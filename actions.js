@@ -1,5 +1,6 @@
 let currentTotal = 0; 
 let displayValue = "0";
+let isCurrentInputFinished = true;
 
 let previousOperator = null;
 
@@ -13,7 +14,7 @@ document.querySelector('.calculator').addEventListener("click",function(event){
 });
 
 function buttonClick(value){
-    if(value !== "." && isNaN(parseInt(value))){
+    if(isNaN(parseInt(value)) && value !== "."){
         handleSymbol(value);
     }else{
         handleNumber(value);
@@ -48,14 +49,22 @@ function handleSymbol(value){
             handleMath(value);
             break;
     }
+    isCurrentInputFinished = true;
 }
 
 function handleNumber(value){
-    if(displayValue === "0" && value !== "."){
+    if (displayValue === "0" && value === "0") {
+        return;
+    }
+    if (value === "." && displayValue.includes(".")) {
+        return;
+    }
+    if(isCurrentInputFinished && value !== "."){
         displayValue = value;
     }else{
         displayValue += value;
     }
+    isCurrentInputFinished = false;
 }
 
 function handleMath(value){
@@ -68,8 +77,6 @@ function handleMath(value){
     }
 
     previousOperator = value;
-
-    displayValue = "0";
 }
 
 function flushOperation(internalBuffer){
