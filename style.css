@@ -10,7 +10,7 @@
     grid-gap: 0.5rem;
     border:0;
 }
-.calculator__input{
+.calculator__display{
     background: black;
     color: white;
     font-size: 2em;
