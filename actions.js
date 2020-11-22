@@ -1,17 +1,9 @@
 let currentTotal = 0; 
 let displayValue = "0";
 let isCurrentInputFinished = true;
-
 let previousOperator = null;
 
-const calcScreen = document.querySelector(".calculator__display");
-
-document.querySelector('.calculator').addEventListener("click",function(event){
-    if(!event.target.classList.contains("calculator__button")) {
-        return;
-    }
-    buttonClick(event.target.innerHTML);
-});
+const calculatorDisplay = document.querySelector(".calculator__display");
 
 function buttonClick(value){
     if(isNaN(parseInt(value)) && value !== "."){
@@ -94,5 +86,5 @@ function flushOperation(internalBuffer){
 }
 
 function rerenderScreen(){
-    calcScreen.value = displayValue;
+    calculatorDisplay.value = displayValue;
 }

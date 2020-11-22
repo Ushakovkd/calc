@@ -21,6 +21,12 @@ const calculatorContainerElement = createElement(containerElementData);
 calculatorContainerElement.append(calculatorElement);
 
 document.body.append(calculatorContainerElement);
+document.querySelector('.calculator').addEventListener("click",function(event){
+    if(!event.target.classList.contains("calculator__button")) {
+        return;
+    }
+    buttonClick(event.target.innerHTML);
+});
 
 function createElement(data) {
     const {tag, className, value, type, innerHTML} = data;
